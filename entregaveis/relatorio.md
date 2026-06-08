@@ -14,7 +14,15 @@ Instrumentar um pipeline GitHub Actions, coletar métricas de execuções reais 
 
 ## 2. Configuração do pipeline
 
-_Será preenchido após o Commit 2._
+**Arquivo:** `.github/workflows/ci.yml`  
+**Cópia de referência:** `entregaveis/workflow.yml`
+
+| Job | Etapas | Depende de |
+|-----|--------|------------|
+| Lint | checkout → setup Python 3.12 → install deps → ruff | — |
+| Test | checkout → setup Python 3.12 → install deps → pytest | Lint |
+
+Execução sequencial: Test só roda após Lint concluir com sucesso.
 
 ---
 

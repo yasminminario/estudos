@@ -10,7 +10,7 @@
 | `graficos/04_testes_vs_duracao.png` | Relação entre quantidade de testes e duração | Pendente |
 | `scripts/collect_metrics.py` | Script de coleta via API GitHub | Pendente |
 | `scripts/generate_charts.py` | Script de geração dos gráficos | Pendente |
-| `workflow.yml` | Cópia do YAML do GitHub Actions | Pendente |
+| `workflow.yml` | Cópia do YAML do GitHub Actions | Parcial (sem artefatos/métricas) |
 | `relatorio.md` | Relatório técnico completo | Em construção |
 | `reproducao.md` | Como reproduzir o experimento | Pendente |
 
