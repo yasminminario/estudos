@@ -2,6 +2,13 @@
 # Removendo arquivos de configuração do VScode
 .vscode/
 __pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+ci-experiment/.venv/
+entregaveis/dados/*.csv
+entregaveis/dados/*.json
+!entregaveis/dados/.gitkeep
 Abrir_emulador.bat
 react-native-animations/ideias.txt
 modeloMD.md

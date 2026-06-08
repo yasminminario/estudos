@@ -1,0 +1,102 @@
+# Relatório Técnico — Experimento CI/CD
+
+**Repositório:** https://github.com/yasminminario/estudos  
+**Aluno(a):** _preencher_  
+**Data:** _preencher_
+
+---
+
+## 1. Objetivo
+
+Instrumentar um pipeline GitHub Actions, coletar métricas de execuções reais e analisar desempenho, estabilidade e gargalos.
+
+---
+
+## 2. Configuração do pipeline
+
+_Será preenchido após o Commit 2._
+
+---
+
+## 3. Variações realizadas (12 execuções)
+
+| # | Commit SHA | Mensagem | Variação | Run ID | Status | Link |
+|---|------------|----------|----------|--------|--------|------|
+| 1 | | | Baseline — testes passando | | | |
+| 2 | | | Teste falhando | | | |
+| 3 | | | Mais testes | | | |
+| 4 | | | Teste lento | | | |
+| 5 | | | Cache habilitado | | | |
+| 6 | | | Cache desabilitado | | | |
+| 7 | | | Jobs sequenciais | | | |
+| 8 | | | Jobs paralelos | | | |
+| 9 | | | Lint falhando | | | |
+| 10 | | | Remoção teste lento | | | |
+| 11 | | | Pico de testes + cache | | | |
+| 12 | | | Configuração final | | | |
+
+---
+
+## 4. Gráficos
+
+_Serão inseridos após a coleta de dados._
+
+---
+
+## 5. Análise
+
+### Qual etapa mais contribuiu para o tempo total do pipeline?
+
+_Pendente._
+
+### Houve diferença significativa entre execuções com e sem cache?
+
+_Pendente._
+
+### O paralelismo reduziu o tempo total? Em que condições?
+
+_Pendente._
+
+### Quais falhas foram mais frequentes?
+
+_Pendente._
+
+### O pipeline fornece feedback rápido o suficiente para o desenvolvedor?
+
+_Pendente._
+
+### Que melhorias poderiam ser feitas no pipeline?
+
+_Pendente._
+
+### Quais limitações existem nos dados coletados?
+
+_Pendente._
+
+### Como essa análise poderia apoiar decisões de engenharia?
+
+_Pendente._
+
+---
+
+## 6. Resultados inesperados
+
+_Pendente — mínimo 2._
+
+---
+
+## 7. Hipótese inicial vs resultado observado
+
+_Pendente._
+
+---
+
+## 8. Limitações do experimento
+
+_Pendente._
+
+---
+
+## 9. Evidências
+
+_Prints e links das execuções reais serão adicionados aqui._
