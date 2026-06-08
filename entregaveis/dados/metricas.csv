@@ -1,0 +1,18 @@
+run_id,commit_sha,commit_message,variation,status,workflow_duration,job_name,job_duration,test_count,test_failures,test_duration_avg,timestamp
+27136684800,7f092e5,experiment(01): baseline com todos os testes passando,01-baseline-passing,success,26.03,Lint,2.49,0,0,0.0,2026-06-08T12:10:37.490818+00:00
+27136684800,7f092e5,experiment(01): baseline com todos os testes passando,01-baseline-passing,success,26.03,Test,6.26,8,0,0.0,2026-06-08T12:10:51.262000+00:00
+27137035952,67010e8,experiment(02): teste falhando intencionalmente,02-failing-test,failure,25.70,Lint,5.19,0,0,0.0,2026-06-08T12:17:10.187777+00:00
+27137035952,67010e8,experiment(02): teste falhando intencionalmente,02-failing-test,failure,25.70,Test,4.85,9,1,0.0,2026-06-08T12:17:21.848975+00:00
+27137244351,4fcad06,experiment(03): aumento artificial de testes parametrizados,03-more-tests,success,25.75,Lint,4.56,0,0,0.0,2026-06-08T12:21:12.558210+00:00
+27137244351,4fcad06,experiment(03): aumento artificial de testes parametrizados,03-more-tests,success,25.75,Test,6.02,48,0,0.0,2026-06-08T12:21:25.015511+00:00
+27137453310,1ac7a06,experiment(04): teste lento de 3 segundos,04-slow-test,success,25.89,Lint,4.32,0,0,0.0,2026-06-08T12:25:11.323663+00:00
+27137453310,1ac7a06,experiment(04): teste lento de 3 segundos,04-slow-test,success,25.89,Test,6.55,49,0,0.0,2026-06-08T12:25:23.553771+00:00
+27137761230,5bef2bd,experiment(05): cache pip habilitado nos jobs,05-cache-on,success,37.25,Lint,4.19,0,0,0.0,2026-06-08T12:31:04.185883+00:00
+27137761230,5bef2bd,experiment(05): cache pip habilitado nos jobs,05-cache-on,success,37.25,Test,9.93,49,0,0.0,2026-06-08T12:31:22.934824+00:00
+27137996275,5fc71ec,experiment(06): cache pip desabilitado,06-cache-off,success,29.74,Lint,2.91,0,0,0.0,2026-06-08T12:35:22.909016+00:00
+27137996275,5fc71ec,experiment(06): cache pip desabilitado,06-cache-off,success,29.74,Test,6.53,49,0,0.0,2026-06-08T12:35:37.531766+00:00
+27138244208,84818f9,experiment(07): jobs sequenciais em cadeia,07-sequential,success,46.21,Install,4.51,0,0,0.0,2026-06-08T12:40:09.513593+00:00
+27138244208,84818f9,experiment(07): jobs sequenciais em cadeia,07-sequential,success,46.21,Lint,5.20,0,0,0.0,2026-06-08T12:40:24.202655+00:00
+27138244208,84818f9,experiment(07): jobs sequenciais em cadeia,07-sequential,success,46.21,Test,6.46,49,0,0.0,2026-06-08T12:40:38.456651+00:00
+27138538221,4585069,experiment(08): jobs Lint e Test em paralelo,08-parallel,success,15.33,Lint,4.92,0,0,0.0,2026-06-08T12:45:30.923671+00:00
+27138538221,4585069,experiment(08): jobs Lint e Test em paralelo,08-parallel,success,15.33,Test,6.11,49,0,0.0,2026-06-08T12:45:32.110772+00:00

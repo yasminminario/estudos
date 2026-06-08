@@ -2,6 +2,8 @@
 
 Projeto mínimo em Python para medir e analisar o comportamento de um pipeline CI/CD com execuções reais no GitHub Actions.
 
+**Repositório original:** https://github.com/W8jonas/estudos
+
 ## Estrutura
 
 ```

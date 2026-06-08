@@ -8,9 +8,7 @@ __pycache__/
 ci-experiment/.venv/
 ci-experiment/artifacts/
 ci-experiment/merged/
-entregaveis/dados/*.csv
-entregaveis/dados/*.json
-!entregaveis/dados/.gitkeep
+entregaveis/scripts/.venv/
 Abrir_emulador.bat
 react-native-animations/ideias.txt
 modeloMD.md

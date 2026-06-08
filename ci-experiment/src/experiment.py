@@ -1,2 +1,2 @@
-VARIATION = "08-parallel"
-DESCRIPTION = "Jobs Lint e Test executam em paralelo sem dependencia entre si"
+VARIATION = "10-final-collection"
+DESCRIPTION = "Entrega final com scripts de coleta via API e geracao de graficos"
