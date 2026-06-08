@@ -1,2 +1,2 @@
-VARIATION = "04-slow-test"
-DESCRIPTION = "Teste lento introduzido para medir impacto na duracao do job Test"
+VARIATION = "05-cache-on"
+DESCRIPTION = "Cache pip habilitado nos jobs Lint e Test via setup-python"
