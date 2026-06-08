@@ -35,8 +35,8 @@ Execução sequencial. Artefato final `pipeline-results` contém `pipeline-metri
 | 2 | 83ca746 | feat(ci): adiciona artefatos e coleta de metricas no pipeline | Setup — artefatos e métricas | 2 | success | 33s |
 | 3 | 7f092e5 | experiment(01): baseline com todos os testes passando | 01-baseline-passing | 27136684800 | success | 26s |
 | 4 | 67010e8 | experiment(02): teste falhando intencionalmente | 02-failing-test | 27137035952 | failure | 26s |
-| 5 | | experiment(03): aumento artificial de testes | 03-more-tests | | | |
-| 6 | | experiment: teste lento | 04-slow-test | | | |
+| 5 | 4fcad06 | experiment(03): aumento artificial de testes parametrizados | 03-more-tests | 27137244351 | success | 26s |
+| 6 | | experiment(04): teste lento de 3 segundos | 04-slow-test | | | |
 | 7 | | experiment: cache habilitado | 05-cache-on | | | |
 | 8 | | experiment: cache desabilitado | 06-cache-off | | | |
 | 9 | | experiment: jobs sequenciais | 07-sequential | | | |

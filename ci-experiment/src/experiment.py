@@ -1,2 +1,2 @@
-VARIATION = "03-more-tests"
-DESCRIPTION = "Aumento artificial da quantidade de testes com casos parametrizados"
+VARIATION = "04-slow-test"
+DESCRIPTION = "Teste lento introduzido para medir impacto na duracao do job Test"
