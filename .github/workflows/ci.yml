@@ -13,8 +13,8 @@ on:
       - ".github/workflows/**"
 
 jobs:
-  install:
-    name: Install
+  lint:
+    name: Lint
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -37,65 +37,26 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Verify install
-        run: |
-          mkdir -p artifacts
-          pip freeze > artifacts/installed.txt
-
-      - name: Record job metrics
-        run: python scripts/record_job_metrics.py Install
-        env:
-          WORKFLOW_START: ${{ env.WORKFLOW_START }}
-
-      - name: Upload install artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: install-artifacts
-          path: |
-            ci-experiment/artifacts/job-install.json
-            ci-experiment/artifacts/workflow-start.txt
-            ci-experiment/artifacts/installed.txt
-          retention-days: 30
-
-  lint:
-    name: Lint
-    runs-on: ubuntu-latest
-    needs: install
-    defaults:
-      run:
-        working-directory: ci-experiment
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Record job start
-        run: echo "JOB_START=$(date +%s)" >> $GITHUB_ENV
-
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
       - name: Run ruff
         run: ruff check src tests
 
       - name: Record job metrics
         run: python scripts/record_job_metrics.py Lint
+        env:
+          WORKFLOW_START: ${{ env.WORKFLOW_START }}
 
       - name: Upload lint artifacts
         uses: actions/upload-artifact@v4
         with:
           name: lint-artifacts
-          path: ci-experiment/artifacts/job-lint.json
+          path: |
+            ci-experiment/artifacts/job-lint.json
+            ci-experiment/artifacts/workflow-start.txt
           retention-days: 30
 
   test:
     name: Test
     runs-on: ubuntu-latest
-    needs: lint
     defaults:
       run:
         working-directory: ci-experiment
@@ -140,7 +101,7 @@ jobs:
   collect-metrics:
     name: Collect Metrics
     runs-on: ubuntu-latest
-    needs: [install, lint, test]
+    needs: [lint, test]
     if: always()
     steps:
       - name: Checkout
@@ -150,13 +111,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Download install artifacts
-        uses: actions/download-artifact@v4
-        continue-on-error: true
-        with:
-          name: install-artifacts
-          path: ci-experiment/artifacts
 
       - name: Download lint artifacts
         uses: actions/download-artifact@v4
@@ -174,7 +128,7 @@ jobs:
 
       - name: Resolve workflow status
         run: |
-          if [ "${{ needs.install.result }}" = "success" ] && [ "${{ needs.lint.result }}" = "success" ] && [ "${{ needs.test.result }}" = "success" ]; then
+          if [ "${{ needs.lint.result }}" = "success" ] && [ "${{ needs.test.result }}" = "success" ]; then
             echo "WORKFLOW_STATUS=success" >> $GITHUB_ENV
           else
             echo "WORKFLOW_STATUS=failure" >> $GITHUB_ENV
