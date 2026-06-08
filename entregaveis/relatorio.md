@@ -19,10 +19,11 @@ Instrumentar um pipeline GitHub Actions, coletar métricas de execuções reais 
 
 | Job | Etapas | Depende de |
 |-----|--------|------------|
-| Lint | checkout → setup Python 3.12 → install deps → ruff | — |
-| Test | checkout → setup Python 3.12 → install deps → pytest | Lint |
+| Lint | checkout → setup → install → ruff → métricas → artefato | — |
+| Test | checkout → setup → install → pytest (JSON) → métricas → artefato | Lint |
+| Collect Metrics | download artefatos → merge CSV/JSON → upload `pipeline-results` | Lint, Test |
 
-Execução sequencial: Test só roda após Lint concluir com sucesso.
+Execução sequencial. Artefato final `pipeline-results` contém `pipeline-metrics.csv`, `pipeline-metrics.json` e `pytest-report.json`.
 
 ---
 
@@ -30,7 +31,7 @@ Execução sequencial: Test só roda após Lint concluir com sucesso.
 
 | # | Commit SHA | Mensagem | Variação | Run ID | Status | Link |
 |---|------------|----------|----------|--------|--------|------|
-| 1 | | | Baseline — testes passando | | | |
+| 1 | 51abee0 | feat(ci): adiciona workflow GitHub Actions com lint e testes | Baseline — sem artefatos/métricas | 1 | success | _link run #1_ |
 | 2 | | | Teste falhando | | | |
 | 3 | | | Mais testes | | | |
 | 4 | | | Teste lento | | | |

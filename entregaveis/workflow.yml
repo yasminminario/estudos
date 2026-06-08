@@ -23,6 +23,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Record workflow start
+        run: echo "WORKFLOW_START=$(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_ENV
+
+      - name: Record job start
+        run: echo "JOB_START=$(date +%s)" >> $GITHUB_ENV
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -33,6 +39,20 @@ jobs:
 
       - name: Run ruff
         run: ruff check src tests
+
+      - name: Record job metrics
+        run: python scripts/record_job_metrics.py Lint
+        env:
+          WORKFLOW_START: ${{ env.WORKFLOW_START }}
+
+      - name: Upload lint artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-artifacts
+          path: |
+            ci-experiment/artifacts/job-lint.json
+            ci-experiment/artifacts/workflow-start.txt
+          retention-days: 30
 
   test:
     name: Test
@@ -45,6 +65,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Record job start
+        run: echo "JOB_START=$(date +%s)" >> $GITHUB_ENV
+
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -54,4 +77,83 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run pytest
-        run: pytest tests/ -v
+        run: pytest tests/ -v --json-report --json-report-file=artifacts/pytest-report.json
+        continue-on-error: true
+        id: pytest
+
+      - name: Record job metrics
+        if: always()
+        run: python scripts/record_job_metrics.py Test
+
+      - name: Upload test artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: |
+            ci-experiment/artifacts/pytest-report.json
+            ci-experiment/artifacts/job-test.json
+          retention-days: 30
+
+      - name: Fail if tests failed
+        if: steps.pytest.outcome == 'failure'
+        run: exit 1
+
+  collect-metrics:
+    name: Collect Metrics
+    runs-on: ubuntu-latest
+    needs: [lint, test]
+    if: always()
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download lint artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: lint-artifacts
+          path: ci-experiment/artifacts
+
+      - name: Download test artifacts
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: test-artifacts
+          path: ci-experiment/artifacts
+
+      - name: Resolve workflow status
+        run: |
+          if [ "${{ needs.lint.result }}" = "success" ] && [ "${{ needs.test.result }}" = "success" ]; then
+            echo "WORKFLOW_STATUS=success" >> $GITHUB_ENV
+          else
+            echo "WORKFLOW_STATUS=failure" >> $GITHUB_ENV
+          fi
+
+      - name: Get commit message
+        run: echo "COMMIT_MESSAGE=$(git log -1 --format=%s)" >> $GITHUB_ENV
+
+      - name: Merge pipeline metrics
+        working-directory: ci-experiment
+        run: python scripts/merge_pipeline_metrics.py
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_SHA: ${{ github.sha }}
+          COMMIT_MESSAGE: ${{ env.COMMIT_MESSAGE }}
+          WORKFLOW_STATUS: ${{ env.WORKFLOW_STATUS }}
+
+      - name: Upload pipeline results
+        uses: actions/upload-artifact@v4
+        with:
+          name: pipeline-results
+          path: |
+            ci-experiment/merged/pipeline-metrics.json
+            ci-experiment/merged/pipeline-metrics.csv
+            ci-experiment/merged/summary.txt
+            ci-experiment/artifacts/pytest-report.json
+          retention-days: 30
