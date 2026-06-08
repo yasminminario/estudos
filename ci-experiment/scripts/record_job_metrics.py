@@ -36,7 +36,7 @@ def main() -> None:
                 metrics["test_duration_avg"] = round(sum(durations) / len(durations), 4)
 
     workflow_start = os.environ.get("WORKFLOW_START")
-    if workflow_start and job_name == "Lint":
+    if workflow_start and job_name == "Install":
         start_file = artifacts_dir / "workflow-start.txt"
         start_file.write_text(workflow_start, encoding="utf-8")
 

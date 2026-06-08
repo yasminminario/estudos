@@ -1,2 +1,2 @@
-VARIATION = "06-cache-off"
-DESCRIPTION = "Cache pip desabilitado para comparar tempo de install com variacao 05"
+VARIATION = "07-sequential"
+DESCRIPTION = "Jobs em cadeia sequencial Install -> Lint -> Test -> Collect Metrics"

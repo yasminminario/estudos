@@ -19,9 +19,10 @@ Instrumentar um pipeline GitHub Actions, coletar métricas de execuções reais 
 
 | Job | Etapas | Depende de |
 |-----|--------|------------|
-| Lint | checkout → setup Python → install → ruff → métricas → artefato | — |
-| Test | checkout → setup Python → install → pytest (JSON) → métricas → artefato | Lint |
-| Collect Metrics | download artefatos → merge CSV/JSON → upload `pipeline-results` | Lint, Test |
+| Install | checkout → setup → install → verify → métricas → artefato | — |
+| Lint | checkout → setup → install → ruff → métricas → artefato | Install |
+| Test | checkout → setup → install → pytest (JSON) → métricas → artefato | Lint |
+| Collect Metrics | download artefatos → merge CSV/JSON → upload `pipeline-results` | Install, Lint, Test |
 
 Execução sequencial. Artefato final `pipeline-results` contém `pipeline-metrics.csv`, `pipeline-metrics.json` e `pytest-report.json`.
 
@@ -38,8 +39,8 @@ Execução sequencial. Artefato final `pipeline-results` contém `pipeline-metri
 | 5 | 4fcad06 | experiment(03): aumento artificial de testes parametrizados | 03-more-tests | 27137244351 | success | 26s |
 | 6 | 1ac7a06 | experiment(04): teste lento de 3 segundos | 04-slow-test | 27137453310 | success | 26s |
 | 7 | 5bef2bd | experiment(05): cache pip habilitado nos jobs | 05-cache-on | 27137761230 | success | 37s |
-| 8 | | experiment(06): cache pip desabilitado | 06-cache-off | | | |
-| 9 | | experiment: jobs sequenciais | 07-sequential | | | |
+| 8 | 5fc71ec | experiment(06): cache pip desabilitado | 06-cache-off | 27137996275 | success | 30s |
+| 9 | | experiment(07): jobs sequenciais em cadeia | 07-sequential | | | |
 | 10 | | experiment: jobs paralelos | 08-parallel | | | |
 | 11 | | experiment: lint falhando | 09-lint-failure | | | |
 | 12 | | experiment: pico de testes com cache | 10-peak-cache | | | |
