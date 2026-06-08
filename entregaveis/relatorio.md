@@ -31,18 +31,18 @@ Execução sequencial. Artefato final `pipeline-results` contém `pipeline-metri
 
 | # | Commit SHA | Mensagem | Variação | Run ID | Status | Link |
 |---|------------|----------|----------|--------|--------|------|
-| 1 | 51abee0 | feat(ci): adiciona workflow GitHub Actions com lint e testes | Baseline — sem artefatos/métricas | 1 | success | _link run #1_ |
-| 2 | | | Teste falhando | | | |
-| 3 | | | Mais testes | | | |
-| 4 | | | Teste lento | | | |
-| 5 | | | Cache habilitado | | | |
-| 6 | | | Cache desabilitado | | | |
-| 7 | | | Jobs sequenciais | | | |
-| 8 | | | Jobs paralelos | | | |
-| 9 | | | Lint falhando | | | |
-| 10 | | | Remoção teste lento | | | |
-| 11 | | | Pico de testes + cache | | | |
-| 12 | | | Configuração final | | | |
+| 1 | 51abee0 | feat(ci): adiciona workflow GitHub Actions com lint e testes | Setup — workflow básico | 1 | success | 23s |
+| 2 | 83ca746 | feat(ci): adiciona artefatos e coleta de metricas no pipeline | Setup — artefatos e métricas | 2 | success | 33s |
+| 3 | | experiment: baseline com todos os testes passando | 01-baseline-passing | 3 | | |
+| 4 | | experiment: teste falhando | 02-failing-test | | | |
+| 5 | | experiment: aumento de testes | 03-more-tests | | | |
+| 6 | | experiment: teste lento | 04-slow-test | | | |
+| 7 | | experiment: cache habilitado | 05-cache-on | | | |
+| 8 | | experiment: cache desabilitado | 06-cache-off | | | |
+| 9 | | experiment: jobs sequenciais | 07-sequential | | | |
+| 10 | | experiment: jobs paralelos | 08-parallel | | | |
+| 11 | | experiment: lint falhando | 09-lint-failure | | | |
+| 12 | | experiment: pico de testes com cache | 10-peak-cache | | | |
 
 ---
 

@@ -19,6 +19,7 @@ def main() -> None:
     commit_sha = os.environ.get("GITHUB_SHA", "local")[:7]
     commit_message = os.environ.get("COMMIT_MESSAGE", "local run")
     workflow_status = os.environ.get("WORKFLOW_STATUS", "success")
+    variation = os.environ.get("EXPERIMENT_VARIATION", "unknown")
 
     workflow_start = None
     start_file = artifacts_dir / "workflow-start.txt"
@@ -40,6 +41,7 @@ def main() -> None:
                 "run_id": run_id,
                 "commit_sha": commit_sha,
                 "commit_message": commit_message,
+                "variation": variation,
                 "status": workflow_status,
                 "workflow_duration": workflow_duration,
                 "job_name": job_data["job_name"],
@@ -58,6 +60,7 @@ def main() -> None:
         "run_id",
         "commit_sha",
         "commit_message",
+        "variation",
         "status",
         "workflow_duration",
         "job_name",
@@ -79,6 +82,7 @@ def main() -> None:
         f"run_id={run_id}",
         f"commit_sha={commit_sha}",
         f"commit_message={commit_message}",
+        f"variation={variation}",
         f"status={workflow_status}",
         f"workflow_duration={workflow_duration}s",
         f"jobs={len(rows)}",
