@@ -1,2 +1,2 @@
-VARIATION = "05-cache-on"
-DESCRIPTION = "Cache pip habilitado nos jobs Lint e Test via setup-python"
+VARIATION = "06-cache-off"
+DESCRIPTION = "Cache pip desabilitado para comparar tempo de install com variacao 05"
