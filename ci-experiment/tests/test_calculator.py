@@ -26,3 +26,7 @@ def test_divide_by_zero():
 
 def test_power():
     assert power(2, 3) == 8
+
+
+def test_multiply_intentional_failure():
+    assert multiply(3, 7) == 20
