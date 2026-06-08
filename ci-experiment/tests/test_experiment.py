@@ -1,8 +1,8 @@
 from src.experiment import DESCRIPTION, VARIATION
 
 
-def test_variation_is_failing_test():
-    assert VARIATION == "02-failing-test"
+def test_variation_is_more_tests():
+    assert VARIATION == "03-more-tests"
 
 
 def test_variation_has_description():

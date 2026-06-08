@@ -1,2 +1,2 @@
-VARIATION = "02-failing-test"
-DESCRIPTION = "Um teste falha de forma intencional para medir comportamento do pipeline"
+VARIATION = "03-more-tests"
+DESCRIPTION = "Aumento artificial da quantidade de testes com casos parametrizados"
